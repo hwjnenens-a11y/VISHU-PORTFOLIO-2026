@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      // Immediate safeguard against "Cannot set property fetch of #<Window> which has only a getter"
+      (function() {
+        try {
+          if (typeof window !== 'undefined') {
+            // 1. Capture and prevent any "Cannot set property fetch" error from propagating
+            window.addEventListener('error', function(e) {
+              var msg = String((e && e.message) || '');
+              if (msg.indexOf('fetch') !== -1 && (msg.indexOf('getter') !== -1 || msg.indexOf('Cannot set property') !== -1)) {
+                if (e.preventDefault) e.preventDefault();
+                if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                return true;
+              }
+            }, true);
+
+            var prevOnError = window.onerror;
+            window.onerror = function(msg, source, lineno, colno, error) {
+              var sMsg = String(msg || (error && error.message) || '');
+              if (sMsg.indexOf('fetch') !== -1 && (sMsg.indexOf('getter') !== -1 || sMsg.indexOf('Cannot set property') !== -1)) {
+                return true;
+              }
+              if (typeof prevOnError === 'function') {
+                return prevOnError.apply(this, arguments);
+              }
+            };
+
+            // 2. Ensure fetch property is writable and has a setter on window and all prototypes
+            var w = window;
+            var currentFetch = typeof w.fetch === 'function' ? w.fetch.bind(w) : w.fetch;
+            var safeDescriptor = {
+              get: function() {
+                return currentFetch;
+              },
+              set: function(newFn) {
+                currentFetch = newFn;
+              },
+              configurable: true,
+              enumerable: true
+            };
+
+            var p = w;
+            while (p) {
+              try {
+                if (Object.getOwnPropertyDescriptor(p, 'fetch')) {
+                  Object.defineProperty(p, 'fetch', safeDescriptor);
+                }
+              } catch (x) {}
+              try {
+                p = Object.getPrototypeOf(p);
+              } catch (x) {
+                break;
+              }
+            }
+
+            [w, w.globalThis, w.self].forEach(function(target) {
+              if (target) {
+                try {
+                  Object.defineProperty(target, 'fetch', safeDescriptor);
+                } catch (x) {}
+              }
+            });
+          }
+        } catch (err) {}
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vishu Sharma Portfolio</title>
+    <meta property="og:title" content="Vishu Sharma Portfolio" />
+    <meta property="og:description" content="Creative Video Editor Portfolio" />
+    <meta property="og:image" content="https://vishuportfolio-liard.vercel.app/cover.png?v=2" />
+    <meta property="og:url" content="https://vishuportfolio-liard.vercel.app" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vishu Sharma Portfolio" />
+    <meta name="twitter:description" content="Creative Video Editor Portfolio" />
+    <meta name="twitter:image" content="https://vishuportfolio-liard.vercel.app/cover.png?v=2" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
