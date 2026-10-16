@@ -66,10 +66,47 @@ export const PROJECTS: Project[] = [
     videoUrl: 'https://www.youtube.com/embed/LHGlDqG4k_Y'
   },
   { 
+    id: 17, 
+    title: 'Territorial Strategy: Dynamic Map Animation', 
+    description: 'High-definition animated map visualization showcasing strategic territorial movements, border shifts, and tactical motion graphics.', 
+    category: 'Map Animation', 
+    aspect: 'portrait',
+    thumbnail: 'https://img.youtube.com/vi/pH9wFTS2QYY/maxresdefault.jpg',
+    videoUrl: 'https://www.youtube.com/embed/pH9wFTS2QYY'
+  },
+  { 
+    id: 19, 
+    title: 'Geopolitical Dynamics: Strategic Territory Mapping', 
+    description: 'High-precision animated map visualization detailing strategic territory dynamics, border transformations, and geopolitical shifts.', 
+    category: 'Map Animation', 
+    aspect: 'portrait',
+    thumbnail: 'https://img.youtube.com/vi/VczCgjy8Dxw/maxresdefault.jpg',
+    videoUrl: 'https://www.youtube.com/embed/VczCgjy8Dxw'
+  },
+  { 
+    id: 18, 
+    title: 'Tactical Cartography: Dynamic Border Shifts', 
+    description: 'High-precision animated map visualization detailing tactical territory dynamics, strategic movements, and geopolitical shifts.', 
+    category: 'Map Animation', 
+    aspect: 'portrait',
+    thumbnail: 'https://img.youtube.com/vi/4shWbsKGums/maxresdefault.jpg',
+    videoUrl: 'https://www.youtube.com/embed/4shWbsKGums'
+  },
+  { 
+    id: 15, 
+    title: 'Geopolitical Cartography: Animated Mapping Short', 
+    description: 'High-impact cartographic short demonstrating dynamic geopolitical shifts, territorial expansion, and tactical motion graphics.', 
+    category: 'Map Animation', 
+    aspect: 'portrait',
+    thumbnail: 'https://img.youtube.com/vi/Ez1Wc5D-JEI/maxresdefault.jpg',
+    videoUrl: 'https://www.youtube.com/embed/Ez1Wc5D-JEI'
+  },
+  { 
     id: 3, 
     title: 'Warfare & Strategy: Conflict Mapping', 
     description: 'Sophisticated map animations detailing the strategic movements and logistics of historical global conflicts.', 
     category: 'Map Animation', 
+    aspect: 'portrait',
     thumbnail: 'https://img.youtube.com/vi/oUyik6yewMI/maxresdefault.jpg',
     videoUrl: 'https://www.youtube.com/embed/oUyik6yewMI'
   },

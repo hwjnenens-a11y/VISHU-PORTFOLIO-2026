@@ -21,6 +21,7 @@ export interface Project {
   thumbnail: string;
   videoUrl: string;
   description: string;
+  aspect?: 'portrait' | 'landscape';
 }
 
 export interface SocialLink {

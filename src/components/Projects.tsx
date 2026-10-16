@@ -70,7 +70,7 @@ export const Projects = () => {
                 onClick={() => setSelectedProject(project)}
                 className="glass-card rounded-[32px] overflow-hidden border border-white/5 bg-white/[0.02] group cursor-pointer"
               >
-                <div className="relative aspect-video overflow-hidden">
+                <div className={`relative overflow-hidden ${project.aspect === 'landscape' ? 'aspect-video' : 'aspect-[9/16]'}`}>
                   <img 
                     src={project.thumbnail} 
                     alt={project.title} 
@@ -128,7 +128,11 @@ export const Projects = () => {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-5xl aspect-video bg-black rounded-[32px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] border border-white/10"
+              className={`relative w-full overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] border border-white/10 bg-black rounded-[32px] ${
+                selectedProject.aspect === 'landscape' 
+                  ? 'max-w-5xl aspect-video' 
+                  : 'max-w-md aspect-[9/16] max-h-[90vh]'
+              }`}
               onClick={(e) => e.stopPropagation()}
             >
               <button 
